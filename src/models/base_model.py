@@ -1,8 +1,10 @@
 import uuid
 
 from sqlalchemy import types
+from ..main import migrate
 
-from main import db
+
+db = migrate.db
 
 
 class BaseModelMixin(db.Model):
