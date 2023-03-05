@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "nork-town-city"
+version = "0.1.0"
+description = ""
+authors = ["Derek da silva <derek.coelho@outlook.com.br>"]
+readme = "README.md"
+packages = [{include = "nork_town_city", from = "src"}]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+flask = "^2.2.3"
+flask-sqlalchemy = "^3.0.3"
+flask-migrate = "^4.0.4"
+
+
+[tool.poetry.group.dev.dependencies]
+pre-commit = "^3.1.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
