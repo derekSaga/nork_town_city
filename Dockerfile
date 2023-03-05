@@ -4,6 +4,7 @@ FROM python:3.11.0
 # Set environment varibles
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
+ENV PYTHONPATH /src
 
 # Creates application directory
 WORKDIR /src
