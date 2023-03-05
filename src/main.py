@@ -2,17 +2,27 @@ from flask import Flask
 from flask_marshmallow import Marshmallow
 from flask_migrate import Migrate
 from flask_migrate import upgrade
-from flask_sqlalchemy import SQLAlchemy
+
+from api import db
+from api.v1.car.model import Car
+from api.v1.car.model import CarColor
+from api.v1.car.model import CarType
+from api.v1.person.model import Person
 from src.core.config import Config
 
 app = Flask(__name__)
 
 app.config.from_object(Config)
 
-db = SQLAlchemy(app)
+
+db.init_app(app=app)
 
 migrate = Migrate(
-    app, db, compare_type=True, compare_server_default=True, render_as_batch=False
+    app,
+    db,
+    compare_type=True,
+    compare_server_default=True,
+    render_as_batch=False,
 )
 
 ma = Marshmallow(app)
