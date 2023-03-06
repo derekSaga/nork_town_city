@@ -4,4 +4,4 @@ set -e
 
 flask db upgrade
 
-python main.py
+gunicorn --bind 0.0.0.0:${WEB_PORT} wsgi:app
