@@ -4,16 +4,13 @@ from sqlalchemy import Enum
 from sqlalchemy import ForeignKey
 from sqlalchemy import types
 
-from api import db
-from src.api.models.base_model import BaseModelMixin
-from src.api.v1.car.enums import CarColorsEnum
-from src.api.v1.car.enums import CarTypeEnum
+from api.models.base_model import BaseModelMixin
+from api.v1.car.enums import CarColorsEnum
+from api.v1.car.enums import CarTypeEnum
 
 
 class CarType(BaseModelMixin):
-    type_car_name = Column(
-        Enum(CarTypeEnum), nullable=False, name="type_car_name"
-    )
+    type_car_name = Column(Enum(CarTypeEnum), nullable=False, name="type_car_name")
 
 
 class CarColor(BaseModelMixin):

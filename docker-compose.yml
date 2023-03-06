@@ -12,6 +12,7 @@ services:
       - .env
     networks:
       - nork-town-network
+    command: ./start-app.sh
   db:
     image: postgres
     container_name: postgresdb
