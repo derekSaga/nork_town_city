@@ -8,7 +8,7 @@ from api.v1.car.model import Car
 from api.v1.car.model import CarColor
 from api.v1.car.model import CarType
 from api.v1.person.model import Person
-from src.core.config import Config
+from core.config import Config
 
 app = Flask(__name__)
 
