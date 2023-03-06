@@ -1,0 +1,63 @@
+version: '3.2'
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "${WEB_PORT}:${WEB_PORT}"
+    depends_on:
+      - db
+    env_file:
+      - .env
+    networks:
+      - nork-town-network
+  db:
+    image: postgres
+    container_name: postgresdb
+    ports:
+      - ${POSTGRES_PORT}:${POSTGRES_PORT}
+    env_file:
+      - .env
+    networks:
+      - nork-town-network
+
+  sonar:
+    container_name: sonarq
+    image: sonarqube:8-community
+    environment:
+      - SONAR_ES_BOOTSTRAP_CHECKS_DISABLE=true
+      - SONAR_JDBC_USERNAME=sonar
+      - SONAR_JDBC_PASSWORD=sonar
+    ports:
+      - "9000:9000"
+      - "9092:9092"
+    volumes:
+      - sonarqube_data:/opt/sonarqube/data
+      - sonarqube_extensions:/opt/sonarqube/extensions
+      - sonarqube_logs:/opt/sonarqube/logs
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  sonar-cli:
+    container_name: sonarcli
+    image: sonarsource/sonar-scanner-cli
+    working_dir: /db-actions-consumer
+    environment:
+      - SONAR_LOGIN=admin
+      - SONAR_PASSWORD=test
+      - SONAR_HOST_URL=http://host.docker.internal:9000
+    volumes:
+      - .:/db-actions-consumer
+    command: [ "sonar-scanner", "--debug" ]
+    networks:
+      - nork-town-network
+
+networks:
+  nork-town-network:
+    driver: bridge
+    name: nork_town
+volumes:
+  sonarqube_data:
+  sonarqube_extensions:
+  sonarqube_logs:
