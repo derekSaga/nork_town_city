@@ -20,5 +20,8 @@ RUN pip install --require-hashes -r requirements.txt
 
 # Copies and chowns for the userapp on a single layer
 COPY src /src
+COPY /scripts/start-app.sh .
 
 EXPOSE 8000
+
+CMD [ "python", "main.py" ]
