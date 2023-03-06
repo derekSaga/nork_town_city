@@ -14,6 +14,7 @@ flask-migrate = "^4.0.4"
 flask-marshmallow = "^0.14.0"
 psycopg2-binary = "^2.9.5"
 marshmallow-sqlalchemy = "^0.29.0"
+gunicorn = "^20.1.0"
 
 
 [tool.poetry.group.dev.dependencies]
