@@ -27,7 +27,9 @@ def create_app():
 
 
 app = create_app()
+from api.v1.car import view
 
+app.register_blueprint(view.car_bp, url_prefix="/api")
 migrate = Migrate(
     app,
     db,
