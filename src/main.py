@@ -3,19 +3,30 @@ from flask_marshmallow import Marshmallow
 from flask_migrate import Migrate
 from flask_migrate import upgrade
 
-from api import db
-from api.v1.car.model import Car
-from api.v1.car.model import CarColor
-from api.v1.car.model import CarType
-from api.v1.person.model import Person
+from api.models.base_model import db
 from core.config import Config
 
-app = Flask(__name__)
 
-app.config.from_object(Config)
+def initdb(flask_app):
+    db.init_app(flask_app)
+
+    from api.v1.car.model import Car
+    from api.v1.car.model import CarColor
+    from api.v1.car.model import CarType
+    from api.v1.person.model import Person
 
 
-db.init_app(app=app)
+def create_app():
+    app = Flask(__name__)
+
+    app.config.from_object(Config)
+
+    initdb(app)
+
+    return app
+
+
+app = create_app()
 
 migrate = Migrate(
     app,
