@@ -1,9 +1,10 @@
-from flask import Flask
-from flask_marshmallow import Marshmallow
+from apiflask import APIBlueprint
+from apiflask import APIFlask
 from flask_migrate import Migrate
-from flask_migrate import upgrade
 
 from api.models.base_model import db
+from api.v1.car.views.car_color_view import car_color_bp
+from api.v1.car.views.car_type_view import car_type_db
 from core.config import Config
 
 
@@ -17,7 +18,9 @@ def initdb(flask_app):
 
 
 def create_app():
-    app = Flask(__name__)
+    app = APIFlask(
+        __name__,
+    )
 
     app.config.from_object(Config)
 
@@ -28,6 +31,13 @@ def create_app():
 
 app = create_app()
 
+car_bp_v1 = APIBlueprint("bp_v1", __name__, url_prefix="/api/v1/car")
+
+car_bp_v1.register_blueprint(car_color_bp)
+car_bp_v1.register_blueprint(car_type_db)
+
+app.register_blueprint(car_bp_v1)
+
 migrate = Migrate(
     app,
     db,
@@ -35,13 +45,6 @@ migrate = Migrate(
     compare_server_default=True,
     render_as_batch=False,
 )
-
-ma = Marshmallow(app)
-
-
-@app.before_first_request
-def init_db():
-    upgrade(directory="./migrations")
 
 
 if __name__ == "__main__":
