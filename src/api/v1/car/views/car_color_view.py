@@ -8,7 +8,7 @@ from flask import Response
 from api.v1.car.schemas import CarColorSchema
 from api.v1.car.views.busisness import car_color
 
-car_color_bp = APIBlueprint("car_color", __name__, url_prefix="/color")
+car_color_bp = APIBlueprint("car_color", __name__, url_prefix="/car/color")
 
 
 @car_color_bp.get("/")
