@@ -1,3 +1,4 @@
+from http import HTTPStatus
 from typing import List
 from uuid import UUID
 
@@ -23,5 +24,7 @@ def get_colors() -> List[Response]:
 def get_color(color_id: UUID):
     result = car_color.get_color(color_id)
     if result is None:
-        raise HTTPError(404, "Color ID %s: Not Found" % color_id, detail=None)
+        raise HTTPError(
+            HTTPStatus.NOT_FOUND, "Color ID %s: Not Found" % color_id, detail=None
+        )
     return result
