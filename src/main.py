@@ -6,6 +6,7 @@ from api.models.base_model import db
 from api.v1.car.views.car_color_view import car_color_bp
 from api.v1.car.views.car_type_view import car_type_db
 from api.v1.car.views.car_view import car
+from api.v1.person.views.person_view import person_bp
 from core.config import Config
 
 
@@ -32,13 +33,14 @@ def create_app():
 
 app = create_app()
 
-car_bp_v1 = APIBlueprint("bp_v1", __name__, url_prefix="/api/v1/")
+api_bp_v1 = APIBlueprint("bp_v1", __name__, url_prefix="/api/v1/")
 
-car_bp_v1.register_blueprint(car_color_bp)
-car_bp_v1.register_blueprint(car_type_db)
-car_bp_v1.register_blueprint(car)
+api_bp_v1.register_blueprint(car_color_bp)
+api_bp_v1.register_blueprint(car_type_db)
+api_bp_v1.register_blueprint(car)
+api_bp_v1.register_blueprint(person_bp)
 
-app.register_blueprint(car_bp_v1)
+app.register_blueprint(api_bp_v1)
 
 migrate = Migrate(
     app,
