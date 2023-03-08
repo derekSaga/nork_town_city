@@ -17,8 +17,13 @@ def create_car(car_data: CarSchema) -> CarSchema:
         raise e
 
 
+def get_car(car_id: UUID) -> CarSchema:
+    car = Car.query.get_or_404(car_id)
+    return car
+
+
 def delete_car(car_id: UUID) -> CarSchema:
-    car_delete = Car.query.get_or_404(car_id)
+    car_delete = get_car(car_id)
     session = db.session
     try:
         db.session.delete(car_delete)
