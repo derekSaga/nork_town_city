@@ -6,4 +6,4 @@ from api.v1.car.schemas import CarSchema
 
 class PersonSchema(BaseSchema):
     name = fields.String(required=True, allow_none=False)
-    cars = fields.Nested(CarSchema, many=True)
+    cars = fields.Nested(CarSchema, many=True, only=("id", "car_name"), dump_only=True)

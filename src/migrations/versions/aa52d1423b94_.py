@@ -1,7 +1,7 @@
 """empty message
 
 Revision ID: aa52d1423b94
-Revises: 
+Revises:
 Create Date: 2023-03-07 02:05:35.524193
 
 """
@@ -67,9 +67,7 @@ def upgrade():
             ["color_id"],
             ["car_color.id"],
         ),
-        sa.ForeignKeyConstraint(
-            ["person_id"], ["person.id"], ondelete="CASCADE"
-        ),
+        sa.ForeignKeyConstraint(["person_id"], ["person.id"], ondelete="CASCADE"),
         sa.ForeignKeyConstraint(
             ["type_car_id"],
             ["car_type.id"],
