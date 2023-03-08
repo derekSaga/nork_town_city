@@ -1,3 +1,4 @@
+from http import HTTPStatus
 from uuid import UUID
 
 from apiflask import APIBlueprint
@@ -11,14 +12,14 @@ car = APIBlueprint("car", __name__, url_prefix="/car")
 
 @car.post("/")
 @car.input(CarSchema)
-@car.output(CarSchema, status_code=201)
+@car.output(CarSchema, status_code=HTTPStatus.CREATED)
 def create_car(car_data: CarSchema) -> CarSchema:
     result = car_busisness.create_car(car_data=car_data)
     return result
 
 
 @car.delete("/<uuid:car_id>")
-@car.output({}, status_code=204)
+@car.output({}, status_code=HTTPStatus.NO_CONTENT)
 def delete_car(car_id):
     car_busisness.delete_car(car_id)
     return ""
@@ -29,5 +30,7 @@ def delete_car(car_id):
 def get_car(car_id: UUID):
     result = car_busisness.get_car(car_id)
     if result is None:
-        raise HTTPError(404, "Car ID %s: Not Found" % car_id, detail=None)
+        raise HTTPError(
+            HTTPStatus.NOT_FOUND, "Car ID %s: Not Found" % car_id, detail=None
+        )
     return result
