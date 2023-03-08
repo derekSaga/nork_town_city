@@ -1,5 +1,7 @@
 from uuid import UUID
-from apiflask import APIBlueprint, HTTPError
+
+from apiflask import APIBlueprint
+from apiflask import HTTPError
 
 from api.v1.car.schemas import CarSchema
 from api.v1.car.views.busisness import car_busisness
