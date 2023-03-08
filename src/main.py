@@ -5,6 +5,7 @@ from flask_migrate import Migrate
 from api.models.base_model import db
 from api.v1.car.views.car_color_view import car_color_bp
 from api.v1.car.views.car_type_view import car_type_db
+from api.v1.car.views.car_view import car
 from core.config import Config
 
 
@@ -31,10 +32,11 @@ def create_app():
 
 app = create_app()
 
-car_bp_v1 = APIBlueprint("bp_v1", __name__, url_prefix="/api/v1/car")
+car_bp_v1 = APIBlueprint("bp_v1", __name__, url_prefix="/api/v1/")
 
 car_bp_v1.register_blueprint(car_color_bp)
 car_bp_v1.register_blueprint(car_type_db)
+car_bp_v1.register_blueprint(car)
 
 app.register_blueprint(car_bp_v1)
 

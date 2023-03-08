@@ -8,4 +8,4 @@ from api.v1.car.model import Car
 
 class Person(BaseModelMixin):
     name = Column(types.String(155), nullable=False)
-    cars = relationship(Car, backref="car", passive_deletes=True)
+    cars = relationship(Car, backref="person", passive_deletes=True)

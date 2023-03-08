@@ -1,12 +1,6 @@
-from apiflask import Schema
 from apiflask import fields
 
-
-class BaseSchema(Schema):
-    __abstract__ = True
-    id = fields.UUID(required=False, allow_none=False)
-    created_on = fields.DateTime(required=False)
-    updated_on = fields.DateTime(required=False)
+from api.schemas.base_schema import BaseSchema
 
 
 class CarColorSchema(BaseSchema):
@@ -21,3 +15,10 @@ class CarTypeSchema(BaseSchema):
 
     def extract_enum_name(self, obj):
         return obj.type_car_name.name
+
+
+class CarSchema(BaseSchema):
+    car_name = fields.String(required=True, allow_none=False)
+    color_id = fields.UUID(required=True, allow_none=False)
+    type_car_id = fields.UUID(required=True, allow_none=False)
+    person_id = fields.UUID(required=True, allow_none=False)
