@@ -8,7 +8,7 @@ from flask import Response
 from api.v1.car.schemas import CarTypeSchema
 from api.v1.car.views.busisness import car_type
 
-car_type_db = APIBlueprint("car_type", __name__, url_prefix="/type")
+car_type_db = APIBlueprint("car_type", __name__, url_prefix="/car/type")
 
 
 @car_type_db.get("/")
