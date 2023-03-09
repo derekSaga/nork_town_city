@@ -1,7 +1,10 @@
 from uuid import UUID
+
 from api.v1.person.model import Person
-from api.models.base_model import db
 from api.v1.person.schema import PersonSchema
+from core.config import Config
+
+db = Config.DB
 
 
 def retrieve_person(user_id: UUID) -> Person:

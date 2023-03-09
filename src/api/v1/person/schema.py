@@ -1,7 +1,7 @@
 from apiflask import fields
 
-from api.schemas.base_schema import BaseSchema
 from api.v1.car.schemas import CarSchema
+from core.base_schema import BaseSchema
 
 
 class PersonSchema(BaseSchema):

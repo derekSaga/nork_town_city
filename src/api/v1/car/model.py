@@ -4,9 +4,9 @@ from sqlalchemy import Enum
 from sqlalchemy import ForeignKey
 from sqlalchemy import types
 
-from api.models.base_model import BaseModelMixin
 from api.v1.car.enums import CarColorsEnum
 from api.v1.car.enums import CarTypeEnum
+from core.base_model import BaseModelMixin
 
 
 class CarType(BaseModelMixin):

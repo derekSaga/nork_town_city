@@ -4,9 +4,11 @@ from uuid import UUID
 from apiflask import HTTPError
 from sqlalchemy.exc import IntegrityError
 
-from api.models.base_model import db
 from api.v1.car.model import Car
 from api.v1.car.schemas import CarSchema
+from core.config import Config
+
+db = Config.DB
 
 
 def create_car(car_data: CarSchema) -> CarSchema:

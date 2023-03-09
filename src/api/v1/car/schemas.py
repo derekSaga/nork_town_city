@@ -1,6 +1,6 @@
 from apiflask import fields
 
-from api.schemas.base_schema import BaseSchema
+from core.base_schema import BaseSchema
 
 
 class CarColorSchema(BaseSchema):
