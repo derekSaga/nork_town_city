@@ -1,8 +1,19 @@
 import os
 from distutils.util import strtobool
 
+from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import MetaData
+from sqlalchemy.ext.declarative import declarative_base
 
-class Config(object):
+metadata = MetaData()
+Base = declarative_base(metadata=metadata)
+
+
+class ConfigBase(object):
+    DB = SQLAlchemy(metadata=metadata)
+
+
+class Config(ConfigBase):
     DEBUG = True
     POSTGRES_USER = os.environ["POSTGRES_USER"]
     POSTGRES_PASSWORD = os.environ["POSTGRES_PASSWORD"]
