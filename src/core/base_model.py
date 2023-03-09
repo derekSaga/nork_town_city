@@ -1,8 +1,8 @@
 import uuid
 
-from flask_sqlalchemy import SQLAlchemy
+from core.config import ConfigBase
 
-db = SQLAlchemy()
+db = ConfigBase.DB
 
 
 class BaseModelMixin(db.Model):
