@@ -6,7 +6,7 @@ class Config(object):
     DEBUG = True
     POSTGRES_USER = os.environ["POSTGRES_USER"]
     POSTGRES_PASSWORD = os.environ["POSTGRES_PASSWORD"]
-    HOST = os.environ["HOST"]
+    POSTGRES_HOST = os.environ["POSTGRES_HOST"]
     POSTGRES_PORT = os.environ["POSTGRES_PORT"]
     POSTGRES_DB = os.environ["POSTGRES_DB"]
     DATABASE_ENGINE = os.environ["DATABASE_ENGINE"]
@@ -14,7 +14,7 @@ class Config(object):
         DATABASE_ENGINE,
         POSTGRES_USER,
         POSTGRES_PASSWORD,
-        HOST,
+        POSTGRES_HOST,
         POSTGRES_PORT,
         POSTGRES_DB,
     )
