@@ -32,6 +32,7 @@ def create_app():
 
 
 app = create_app()
+from api.v1.car import view
 
 api_bp_v1 = APIBlueprint("bp_v1", __name__, url_prefix="/api/v1/")
 
