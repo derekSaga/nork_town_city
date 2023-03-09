@@ -4,18 +4,25 @@ Application developed to control the number of cars that a person owns in Nork T
 
 ## Requirements
 
-`Python` with version 3.9 and `pip` with version 22.3.1
+`Python` with version 3.9 and `poetry` with version 1.4.0
 If you want to run docker container locally it will necessary to have at least version 20.10.6 from docker engine and docker-compose version 1.29.1
 
 ## Installation
 
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install the dependencies.
+Use the package manager [poetry](https://python-poetry.org/) to install the dependencies.
 
 ```bash
-pip install -r requirements.txt
+poetry shell
+poetry install
 ```
-
 ## Usage
+
+After install the dependencies, you need export environment variable `FLASK_APP=src/wsgi.py` and run command below:
+
+```bash
+Flask run
+```
+OR
 
 You can use `docker-compose` to run the container based application:
 
